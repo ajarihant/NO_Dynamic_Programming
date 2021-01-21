@@ -32,7 +32,352 @@
 <p>Let <span class="math inline">\(S^{i}\)</span> consists tuples of the form <span class="math inline">\((f,x)\)</span>, where <span class="math inline">\(f=f_{i}(x)\)</span>.</p>
 <p>There is at most one tuple for each different x that results from a sequence of decisions on <span class="math inline">\(m_{1},m_{2},....m_{n}\)</span>.</p>
 <p>The dominance rule <span class="math inline">\((f_{1},x_{1})\)</span> dominates <span class="math inline">\((f_{2},x_{2})\)</span> if <span class="math inline">\(f_{1} \ge f_{2}\)</span> and <span class="math inline">\(x_{1} \le x_{2}\)</span> holds for this problem too. Hence, dominated tuples can be discarded from <span class="math inline">\(S^{i}\)</span>.</p>
-    
+  
+ <h2 id="example">Example:</h2>
+<p>We are designing a three stage system with device types <span class="math inline">\(D_{1},D_{2},D_{3}\)</span>. The cost are $ 30, $ 15, and $20 respectively. The cost of the system is to be no more than $ 105. The reliability of each device type is 0.9,0.8, and 0.5 respectively. We assume that if stage i has <span class="math inline">\(m_{i}\)</span> devices of type i in parallel, then <span class="math inline">\(\Phi _{i}( m_{i})= \left ( 1-r_{i} \right )^{m_{i}}\)</span>.</p>
+
+    <p><strong>Solution:</strong></p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center">Col1</th>
+<th align="center"><span class="math inline">\(m_{1}\)</span></th>
+<th align="center"><span class="math inline">\(m_{2}\)</span></th>
+<th align="center"><span class="math inline">\(m_{3}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Cost/unit</td>
+<td align="center">30</td>
+<td align="center">15</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(c_{i}\)</span></td>
+<td align="center">0.9</td>
+<td align="center">0.8</td>
+<td align="center">0.5</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(u_{i}\)</span></td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{1}^{1}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.9</td>
+<td align="center">30</td>
+<td align="center">(1,0,0)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{2}^{2}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.9</td>
+<td align="center">30</td>
+<td align="center">(1,0,0)</td>
+</tr>
+<tr class="even">
+<td align="center">0.99</td>
+<td align="center">60</td>
+<td align="center">(2,0,0)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{1}^{2}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.72</td>
+<td align="center">45</td>
+<td align="center">(1,1,0)</td>
+</tr>
+<tr class="even">
+<td align="center">0.792</td>
+<td align="center">75</td>
+<td align="center">(2,1,0)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{2}^{2}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.864</td>
+<td align="center">60</td>
+<td align="center">(1,2,0)</td>
+</tr>
+<tr class="even">
+<td align="center">0.9504</td>
+<td align="center">90</td>
+<td align="center">(2,2,0)</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">This is not feasible</td>
+</tr>
+</tbody>
+</table>
+</div>
+    <div class="center">
+<p><span class="math inline">\(S_{2}^{2}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.864</td>
+<td align="center">60</td>
+<td align="center">(1,2,0)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{3}^{2}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.8928</td>
+<td align="center">75</td>
+<td align="center">(1,3,0)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S^{2}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.72</td>
+<td align="center">45</td>
+<td align="center">(1,1,0)</td>
+</tr>
+<tr class="even">
+<td align="center">0.792</td>
+<td align="center">75</td>
+<td align="center">(2,1,0)</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">This entry will be eliminated.</td>
+</tr>
+<tr class="even">
+<td align="center">0.864</td>
+<td align="center">60</td>
+<td align="center">(1,2,0)</td>
+</tr>
+<tr class="odd">
+<td align="center">0.8928</td>
+<td align="center">75</td>
+<td align="center">(1,3,0)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{1}^{3}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.36</td>
+<td align="center">65</td>
+<td align="center">(1,1,1)</td>
+</tr>
+<tr class="even">
+<td align="center">0.432</td>
+<td align="center">80</td>
+<td align="center">(1,2,1)</td>
+</tr>
+<tr class="odd">
+<td align="center">0.4964</td>
+<td align="center">95</td>
+<td align="center">(1,3,1)</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">We can not add any unit to this.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{1}^{3}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.54</td>
+<td align="center">85</td>
+<td align="center">(1,1,2)</td>
+</tr>
+<tr class="even">
+<td align="center">0.648</td>
+<td align="center">100</td>
+<td align="center">(1,2,2)</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">We can not add any unit to this.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{2}^{3}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.54</td>
+<td align="center">85</td>
+<td align="center">(1,1,2)</td>
+</tr>
+<tr class="even">
+<td align="center">0.648</td>
+<td align="center">100</td>
+<td align="center">(1,2,2)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S_{3}^{3}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.63</td>
+<td align="center">105</td>
+<td align="center">(1,1,3)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="center">
+<p><span class="math inline">\(S^{3}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Probability</th>
+<th align="center">Cost</th>
+<th align="center">Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.4964</td>
+<td align="center">95</td>
+<td align="center">(1,3,1)</td>
+</tr>
+<tr class="even">
+<td align="center">0.648</td>
+<td align="center">100</td>
+<td align="center">(1,2,2)</td>
+</tr>
+<tr class="odd">
+<td align="center">0.63</td>
+<td align="center">105</td>
+<td align="center">(1,1,3)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Therefore, the best design has a reliability of 0.648 and a cost of 100. The number of copies of <span class="math inline">\(m_{1}=1, m_{2}=2, m_{3}=2\)</span></p>
     
   </body>
   </html>
