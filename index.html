@@ -5,8 +5,8 @@
 </script>
   </head>
   <body>
- 
-     <h1 id="reliability-design">Reliability Design</h1>
+    
+ <h1 id="reliability-design">Reliability Design</h1>
 <p>The problem is to design a system that is composed of a several devices connected in the series. Let <span class="math inline">\(r_{i}\)</span> be the reliability of the device <span class="math inline">\(D_{i}\)</span>. Then the Reliability of the entire system is <span class="math inline">\(\prod r_{i}\)</span>.</p>
 <p>Even if the individual devices are very reliable, the reliabilty of the system may not be very good.</p>
 <p>For example , if <span class="math inline">\(n=10\)</span> and <span class="math inline">\(r_{i}=0.99\)</span>, <span class="math inline">\(1\leq i\leq 10\)</span>, then <span class="math inline">\(\prod r_{i}=0.904.\)</span>. Hence, it is desirable to duplicate the devices. Multiple copies of the same device type are connected in parallel through the use of switching circuits. The switching circuits determine which devices in any given group are functioning properly. They the make use of one such device at each stage. They then make use of one such device at each stage.</p>
@@ -16,9 +16,15 @@
 <p>Our problem is to use the device duplication to maximize the reliability. This maximization of the reliability is carried under the cost constraint. Let <span class="math inline">\(c_{i}\)</span> be the cost of the unit of device i and c be the maximum allowable cost of the system being designed. We wish to solve the following maximization problem.</p>
 <p>The following is the problem statement.</p>
 <div class="center">
-<p>maximize <span class="math inline">\(\Phi _{i} \left ( m_{i} \right ), 1\le n\)</span></p>
-<p>subject to <span class="math inline">\(\sum _{1 \le i \le n} c_{i}m_{i} \le c\)</span></p>
+<p><strong>maximize</strong> <span class="math inline">\(\Phi _{i} \left ( m_{i} \right ), 1\le n\)</span></p>
+<p><strong>subject to</strong> <span class="math inline">\(\sum _{1 \le i \le n} c_{i}m_{i} \le c\)</span></p>
 <p><span class="math inline">\(m_{i} \ge 1\)</span> and integer, <span class="math inline">\(1 \le  i \le n\)</span>.</p>
 </div>
+<p>since, we can assume each <span class="math inline">\(c_{i} \ge 0\)</span>, each <span class="math inline">\(m_{i}\)</span> must be in the range <span class="math inline">\(1 \le m_{i} \le u_{i}\)</span>, where <span class="math inline">\(u_{i}=\left \lfloor \frac{\left ( c+c_{i}-\sum_{j=1}^{n}{c_{j}} \right )}{c_{i}} \right \rfloor\)</span>. The upper bound <span class="math inline">\(u_{i}\)</span> follow from the observation that <span class="math inline">\(m_{j} \ge 1\)</span>. An optimal solution <span class="math inline">\(m_{1},m_{2},....m_{n}\)</span> is the result of a sequence of decisions, one decision for each <span class="math inline">\(m_{i}\)</span>.</p>
+<p>Let <span class="math inline">\(f_{i}(x)\)</span> represents the maximum value of the <span class="math inline">\(\prod_{1 \le j \le i}{\Phi _{i}\left ( m_{j} \right ) }\)</span> subject to the constraints <span class="math inline">\(\sum _{1 \le j \le i}{c_{j}m_{j}} \le x\)</span> and <span class="math inline">\(1 \le m_{j} \le u_{j}, 1 \le j \le i\)</span>. Then, the value of an optimal solution is <span class="math inline">\(f_{n}(c)\)</span>.</p>
+<p>The last decision made requires one to choose <span class="math inline">\(m_{n}\)</span> from <span class="math inline">\(\left \{ 1,2,3.......u_{n} \right \}\)</span>.</p>
+<p>Once a value for <span class="math inline">\(m_{n}\)</span> has been chosen, the remaining decisions must b</p> 
+    
+    
   </body>
   </html>
