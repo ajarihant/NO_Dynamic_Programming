@@ -5,14 +5,19 @@
 </script>
   </head>
   <body>
- <p>The problem is to design a system that is composed of a several devices connected in the series. Let <span class="math inline">\(r_{i}\)</span> be the reliability of the device <span class="math inline">\(D_{i}\)</span>. Then the Reliability of the entire system is <span class="math inline">\(\prod r_{i}\)</span>.</p>
+ 
+    <p>The problem is to design a system that is composed of a several devices connected in the series. Let <span class="math inline">\(r_{i}\)</span> be the reliability of the device <span class="math inline">\(D_{i}\)</span>. Then the Reliability of the entire system is <span class="math inline">\(\prod r_{i}\)</span>.</p>
 <p>Even if the individual devices are very reliable, the reliabilty of the system may not be very good.</p>
 <p>For example , if <span class="math inline">\(n=10\)</span> and <span class="math inline">\(r_{i}=0.99\)</span>, <span class="math inline">\(1\leq i\leq 10\)</span>, then <span class="math inline">\(\prod r_{i}=0.904.\)</span>. Hence, it is desirable to duplicate the devices. Multiple copies of the same device type are connected in parallel through the use of switching circuits. The switching circuits determine which devices in any given group are functioning properly. They the make use of one such device at each stage. They then make use of one such device at each stage.</p>
 <p>If the stage i contains <span class="math inline">\(m_{i}\)</span> copies of the device <span class="math inline">\(D_{i}\)</span>, then the probabilty that all <span class="math inline">\(m_{i}\)</span> have a malfunction is <span class="math inline">\(\left ( 1-r_{i} \right )^{m_{i}}\)</span>.Hence the reliabilty of the stage i becomes <span class="math inline">\(1-\left ( 1-r_{i} \right )^{m_{i}}\)</span>. Thus, if <span class="math inline">\(r_{i}=0.99\)</span> and <span class="math inline">\(m_{i}=2\)</span>, the stage reliability becomes <span class="math inline">\(0.9999\)</span>.</p>
 <p>In any practical situation, the stage reliability is little less than <span class="math inline">\(1-\left ( 1-r_{i} \right )^{m_{i}}\)</span> because the switching circuits themselves are not fully reliable. Also, failure of copies of the same device maynot be fully independent.</p>
 <p>Let us assume that reliabilty of stage i is given by a function <span class="math inline">\(\Phi _{i} \left ( m_{i} \right ), 1\le n\)</span>. Therefore, the reliability of the system of stages is <span class="math inline">\(\prod_{1 \le i \le n}{\Phi _{i}\left ( m_{i} \right ) }\)</span>.</p>
 <p>Our problem is to use the device duplication to maximize the reliability. This maximization of the reliability is carried under the cost constraint. Let <span class="math inline">\(c_{i}\)</span> be the cost of the unit of device i and c be the maximum allowable cost of the system being designed. We wish to solve the following maximization problem.</p>
-<p>The following is the problem statement. maximize <span class="math inline">\(\Phi _{i} \left ( m_{i} \right ), 1\le n\)</span> subject to <span class="math inline">\(\sum _{1 \le i \le n} c_{i}m_{i} \le c\)</span> <span class="math inline">\(m_{i} \ge 1\)</span> and integer, <span class="math inline">\(1 \le  i \le n\)</span>.</p>
-  
+<p>The following is the problem statement.</p>
+<div class="center">
+<p>maximize <span class="math inline">\(\Phi _{i} \left ( m_{i} \right ), 1\le n\)</span></p>
+<p>subject to <span class="math inline">\(\sum _{1 \le i \le n} c_{i}m_{i} \le c\)</span></p>
+<p><span class="math inline">\(m_{i} \ge 1\)</span> and integer, <span class="math inline">\(1 \le  i \le n\)</span>.</p>
+</div>
   </body>
   </html>
