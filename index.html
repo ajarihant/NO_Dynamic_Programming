@@ -452,6 +452,24 @@
 
 <p>Now, this problem is an optimization problem. </p>
 
+<center>
+<div style="text-align: left;  margin-left: 600px;">
+<!-- <p> -->
+<strong>Maximize</strong> <span class="math inline">\(\sum\limits_{i=1}^{10} b_ix_i \)</span><br>
+s.t. <br><span class="math inline"><br>\(\sum\limits_{i=1}^{10} c_ix_i \le B\)</span><br>
+<span class="math inline">\(x_i \in \{0,1\}\ \forall i \in \{1,2,...,10\}\)</span><br><br>
+where,<br>
+<span class="math inline">\(c_i\)</span> represents the cost required by <span class="math inline">\(i^{th}\)</span> PSU <br>
+<span class="math inline">\(b_i\)</span> represents the benefit from the <span class="math inline">\(i^{th}\)</span> PSU <br>
+<span class="math inline">\(x_i=1\)</span> represents GoI allocated buget to  <span class="math inline">\(i^{th}\)</span> PSU, otherwise not<br>
+<span class="math inline">\(B\)</span> represents the budget GoI has
+<!-- </p>   -->
+</div>
+</center>
+
+<p>Here, we can't directly use simplex method for solving LPP. It is because this problem has a special constraint on <span class="math inline">\(x_i\)</span> which makes it Integer Programming Problem which can be easily solved using DP. This problem reduces to a standard problem of DP which is 0/1 Knapsack Problem.</p>
+
+
 <p>Let's first define the variables.</p>
 <pre>
   <code>import numpy as np <br>
@@ -463,7 +481,7 @@ budget = 420
 n = len(cost)</code>
 </pre>
 
-<p>The Dynamic Programming Code</p>
+<p>The Dynamic Programming Code:</p>
 
 <pre>
   <code>dp = np.zeros((n+1, budget+1), dtype=np.int)
@@ -480,6 +498,48 @@ for i in range(n + 1):
 print('Profit made by government by optimally distributing funds: Rs.', dp[n][budget], 'Cr')</code>
 </pre>
 
+<p>
+	The Profit made by GoI is Rs. 3110 Crs. by optimially allocating 420 Crs. 
+</p>
+
+
+<pre>
+  <code>profit = dp[n][budget]
+b = budget
+allocat_org = []
+for i in range(n, 0, -1): 
+    if profit <= 0: 
+        break
+    if profit == dp[i-1][b]: 
+        continue
+    else:
+        allocat_org.append(organizations[i-1])
+        profit = profit - benefit[i-1] 
+        b = b - cost[i-1] 
+
+print('Organizations which will get required funds:')
+for iter, x in enumerate(allocat_org):
+  print(x)</code>
+</pre>
+
+
+<p>Organizations which will get required funds are:
+	<table class="center" border="1">
+		<tr>
+			<th style="text-align:center">BEL</th>
+			<th style="text-align:center">SAIL</th>
+			<th style="text-align:center">ISRO</th>
+			<th style="text-align:center">PGCIL</th>
+			<th style="text-align:center">NTPC</th>
+			<th style="text-align:center">IOCL</th>
+			<th style="text-align:center">ONGC</th>
+		</tr>
+	</table>
+</p>
+
+<p>Dynamic Programming will always provide global solution by doing minimum computations. Hence, here no matter how we solve we will always reach to same solution.</p>
 
   </body>
   </html>
+
+

@@ -41,6 +41,11 @@ body {
 }
 
 div {
-  text-align: justify;
-  text-justify: inter-word;
+  /*text-align: justify;*/
+  /*text-justify: inter-word;*/
 }
+
+/*div.center {
+  text-align: left;
+  margin-left: 600px;
+}*/
