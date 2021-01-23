@@ -512,7 +512,7 @@
 
 <p>We will try to understand Dynamic Programming with the help of an example.</p> 
 
-<p>Govt. of India has a budget of Rs. <strong>420</strong> Crores. GoI has decided to distribute to this budget to various PSUs based on their demands and expected profit. GoI wants to allocated money in such that it will maximize the expected benefit. Constraint: Either the demand of a PSU is full filled completely or will not be considered at all.</p>
+<p>Govt. of India has a budget of Rs. <strong>420</strong> Crores. GoI has decided to distribute to this budget to various PSUs based on their demands and expected profit. GoI wants to allocate money in such that it will maximize the expected benefit. Constraint: Either the PSU demand is full filled completely or will not be considered at all.</p>
 
 <div>
 <table align="center" style="width:90%;" border="1" >
@@ -584,12 +584,12 @@ s.t. <br><span class="math inline"><br>\(\sum\limits_{i=1}^{10} c_ix_i \le B\)</
 where,<br>
 <span class="math inline">\(c_i\)</span> represents the cost required by <span class="math inline">\(i^{th}\)</span> PSU <br>
 <span class="math inline">\(b_i\)</span> represents the benefit from the <span class="math inline">\(i^{th}\)</span> PSU <br>
-<span class="math inline">\(x_i=1\)</span> represents GoI allocated buget to  <span class="math inline">\(i^{th}\)</span> PSU, otherwise not<br>
+<span class="math inline">\(x_i=1\)</span> represents GoI allocated budget to  <span class="math inline">\(i^{th}\)</span> PSU, otherwise not<br>
 <span class="math inline">\(B\)</span> represents the budget GoI has
 </p>
 <!-- </div> -->
 
-<p>Here, we can't directly use simplex method for solving LPP. It is because this problem has a special constraint on <span class="math inline">\(x_i\)</span> which makes it Integer Programming Problem which can be easily solved using DP. This problem reduces to a standard problem of DP which is 0/1 Knapsack Problem.</p>
+<p>Here, we can't directly use the simplex method for solving LPP. This problem has a particular constraint on <span class="math inline">\(x_i\)</span> which makes it Integer Programming Problem that can be easily solved using DP. This problem reduces to a standard problem in DP, which is 0/1 Knapsack Problem.</p>
 
 
 <p>Let's first define the variables.</p>
@@ -630,7 +630,7 @@ print('Profit made by government by optimally distributing funds: Rs.', dp[n][bu
 </div>
 
 <p>
-	The Profit made by GoI is Rs. 3110 Crs. by optimially allocating 420 Crs. 
+	The Profit made by GoI is Rs. 3110 Crs. by optimally allocating 420 Crs. 
 </p>
 
 <div>
@@ -655,7 +655,7 @@ for iter, x in enumerate(allocat_org):
 </div>
 
 
-<p>Organizations which will get required funds are:
+<p>Organizations which will get the required funds are:
 	<table  style="width:70%;" cellspacing="30px" border="1" align="center">
 		<tr>
 			<th style="text-align:center">BEL</th>
@@ -669,7 +669,7 @@ for iter, x in enumerate(allocat_org):
 	</table>
 </p>
 
-<p>Dynamic Programming will always provide global solution by doing minimum computations. Hence, here no matter how we solve we will always reach to same solution.</p>
+<p>Dynamic Programming will always provide the global solution by doing minimum computations. Hence, here no matter how we solve, we will always reach the same solution.</p>
 </p>
 
 </dt-article>
