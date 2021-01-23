@@ -514,9 +514,11 @@
 
 <p>Now, this problem is an optimization problem. </p>
 
-<center>
-<div style="text-align: left;  margin-left: 600px;">
+<table class="center">
+<!-- <div style="text-align: left;"> -->
 <!-- <p> -->
+<tr>
+<td>
 <strong>Maximize</strong> <span class="math inline">\(\sum\limits_{i=1}^{10} b_ix_i \)</span><br>
 s.t. <br><span class="math inline"><br>\(\sum\limits_{i=1}^{10} c_ix_i \le B\)</span><br>
 <span class="math inline">\(x_i \in \{0,1\}\ \forall i \in \{1,2,...,10\}\)</span><br><br>
@@ -525,16 +527,19 @@ where,<br>
 <span class="math inline">\(b_i\)</span> represents the benefit from the <span class="math inline">\(i^{th}\)</span> PSU <br>
 <span class="math inline">\(x_i=1\)</span> represents GoI allocated buget to  <span class="math inline">\(i^{th}\)</span> PSU, otherwise not<br>
 <span class="math inline">\(B\)</span> represents the budget GoI has
+</td>
+</tr>
 <!-- </p>   -->
-</div>
-</center>
+<!-- </div> -->
+</table>
+
 
 <p>Here, we can't directly use simplex method for solving LPP. It is because this problem has a special constraint on <span class="math inline">\(x_i\)</span> which makes it Integer Programming Problem which can be easily solved using DP. This problem reduces to a standard problem of DP which is 0/1 Knapsack Problem.</p>
 
 
 <p>Let's first define the variables.</p>
-<pre>
-  <code>import numpy as np <br>
+<pre class="line-numbers">
+  <code class="language-python">import numpy as np <br>
 organizations = ['ONGC', 'IOCL', 'NTPC', 'PGCIL', 'ISRO', 'GAIL', 'SAIL', 'BEL', 'OIL', 'BHEL']
 benefit = np.array([592, 314, 157, 300, 1051, 116, 673, 23, 232, 184], dtype=np.int)
 cost = np.array([28, 17, 10, 32, 152, 24, 160, 7, 94, 101], dtype=np.int)
