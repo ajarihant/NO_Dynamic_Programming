@@ -1,74 +1,111 @@
-<html>
-<head>
-	<title>Optimzation using Dynamic Programming</title>
+
+<meta charset="utf-8">
 <link rel="stylesheet" href="mycss.css">
 
-<!-- <script src="template.js"></script> -->
+<script src="template.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"> </script>
+
+<script type="text/front-matter">
+  title: "Dynamic Programming"
+  description: "Concepts in Constrained Optimization"
+  authors:
+  - Arihant Jain
+  - Venkatesh Vaddadi
+  - Avishek Shaw
+  affiliations:
+  - CDS-IISc: http://cds.iisc.ac.in/
+  - CDS-IISc: http://cds.iisc.ac.in/
+  - CDS-IISc: http://cds.iisc.ac.in/
 </script>
-<!-- <style> -->
 
-<!-- </style> -->
-  <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
-</script>
-  </head>
-  <body>
+<dt-article>
 
-<h1 id="dynamic-programming-in-reinforcement-learning">Dynamic Programming in Reinforcement Learning</h1>
+  <h1> Dynamic Programming </h1>
+  <h3> Three different facets </h3>
+  <dt-byline></dt-byline>
 
-<p>
+  <p> Enter introductory text here </p>
 
-  Dynamic Programming can be used to compute optimal policies given a Markov Decision Process (MDP). Let us assume that the environment is a finite MDP. i.e. the state and the action sets, 
-  <span class="math inline"> \(\mathcal{S} \) </span> 
-  and 
-  <span class="math inline"> \( \mathcal{A(s)} \) </span>
-  ,for some 
-  <span class="math inline"> \(s \in \mathcal{S} \) </span>, 
-  are finite and that its dynamics are given by a set of transition probabilities, 
-  <span class="math inline"> \( \mathcal{P}<em>{ss^{&#39;}}^{a}  = Pr{s</em>{t+1} =  s^{&#39;}|s<em>t = s,a</em>{t}=a } /) </span>
-  and the expected immediate reward, 
-  <span class="math inline"> \(\mathcal{R}<em>{ss^{&#39;}}^{a} = E{r</em>{t+1}|a<em>{t} = a, s</em>{t} =s,s_{t+1} = s^{&#39;}} \)</span>
-  , for all 
-  <span class="math inline"> \(s \in \mathcal{S}, a \in \mathcal{A}(s)$, and $s^{&#39;} \in \mathcal{S}^{+} \) </span> 
-  <span class="math inline"> \($\mathcal{S}^{+} \) </span>
-  is 
-  <span class="math inline"> \(\mathcal{S} \) </span>
-   plus a terminal state if the problem is episodic.
+    <h2 id="dynamic-programming-in-reinforcement-learning">Dynamic Programming in Reinforcement Learning</h2>
 
-</p>
+    <p>
+      Classical Dynamic Programming (DP) algorithms require a perfect knowledge of Markov Decision Process (MDP) to be useful in Reinforcement Learning (RL) . Hence, they may not be directly applied to such problems. Generally,they also incur large computational expense. However, they can be adapated to work with RL problems, and that too at a less-than-classical-computational expense. 
+    </p>
+    
+    <p>
+      In this entire discussion, we will assume that that the environment is a finite MDP i.e. the state and the action sets, 
+      \(\mathcal{S} \) 
+      and 
+      \( \mathcal{A(s)} \), 
+      for some 
+      \(s \in \mathcal{S} \),
+      are finite and that its dynamics are given by a set of transition probabilities, 
+      \( \mathcal{P}_{s s^{&#39;}}^{a} = Pr \{s_{t+1}  =  s^{&#39;}|s_{t} = s,a_{t} = a) \} \) 
+      and the expected immediate reward,  
+      \(\mathcal{R}_{ss^{&#39;}}^{a} = E \{r_{t+1}|a_{t} = a, s_{t} =s,s_{t+1} = s^{&#39;} \} \), 
+      for all 
+      \(s \in \mathcal{S}, a \in \mathcal{A}(s) \), 
+      and 
+      \(s^{&#39;} \in \mathcal{S}^{+} (\mathcal{S}^{+} \) 
+      is 
+      \(\mathcal{S} \) 
+      plus a terminal state if the problem is episodic).
+    </p>
 
 
- <p><span class="math inline"> \(V^{\pi}_s =  E_{\pi} \{ r_{t+1} + \gamma r_{t+2} + \gamma r_{t+3} + ......| \hspace{0.1cm} s_{t} = s \} \) </span></p>
+    <p>
+      We will consider the use of DP for <b> Policy Evaluation </b>. Policy evaluation is used to estimate the goodness of a policy. Bellman equation of optimality for state value function 
+      \(V^{\pi}_{s} \) 
+      (for an arbitrary policy \( \pi \) )
+      and all
+      \(s \in \mathcal{S} \)
+      is given below:. 
+      \begin{equation}
+      \begin{split}
+        V^{\pi}_s &=  E_{\pi} \{ r_{t+1} + \gamma r_{t+2} + \gamma r_{t+3} + ......| \hspace{0.1cm} s_{t} = s \} \\ 
+      \end{split}
+      \end{equation}
+    </p>
 
-<p><span class="math inline"> \(\hspace{0.75cm} =  E_{\pi} \{ r_{t+1} + \gamma V^{\pi} (s_{t+1}) \hspace{0.1cm} | \hspace{0.1cm} s_{t} =s\} \) </span></p>
+    <p>
+      This equation can be re-written as follows:
+      \begin{equation}
+      \begin{split}
+        V^{\pi}_s &=  E_{\pi} \{ r_{t+1} + \gamma V^{\pi} (s_{t+1}) \hspace{0.1cm} | \hspace{0.1cm} s_{t} =s\} \\ \\
+        &=  \sum _{a} \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} [\mathcal{R}^{a}_{ss^{'}} + \gamma V^{\pi}(s^{'})] 
+      \end{split}
+      \end{equation}
 
-<p><span class="math inline"> \( \hspace{0.75cm} =  \sum _{a} \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} 
-[ \mathcal{R}^{a}_{ss^{'}} + \gamma V^{\pi}(s^{'}) ] \) </span></p>
 
-<p><span class="math inline"> \( V_{k+1}(s) = E_{\pi} \{r_{t+1} + \gamma V_{k}(s_{t+1}) \hspace{0.1cm} | \hspace{0.1cm} s_{t} = s \} \) </span>
+  <p>
+    \begin{equation}
+    \begin{split}
+      V_{k+1}(s) &= E_{\pi} \{r_{t+1} + \gamma V_{k}(s_{t+1}) \hspace{0.1cm} | \hspace{0.1cm} s_{t} = s \} \\
+      &= \sum _{a} \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} [\mathcal{R}^{a}_{ss^{'}} + \gamma V_{k}(s^{'})] 
+      \end{split}
+    \end{equation}
+  </p>
 
-<p><span class="math inline"> \( \hspace{1.45cm} = \sum _{a} \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} 
-[\mathcal{R}^{a}_{ss^{'}} + \gamma V_{k}(s^{'})] \) </span></p>
+  <h2>Algorithm for Policy Evaluation</h3>
 
-<h3 id="algorithm-for-policy-evaluation">Algorithm for Policy Evaluation</h3>
+  <p>
 
-<p>
+    Input  <span class="math inline"> \(  \pi \) </span>, the policy to be evaluated <br> 
+    Initialize  <span class="math inline"> \(V(s) = 0 \) </span>, for all <span class="math inline"> \( s \in \mathcal{S}^{+} \) </span> <br>
+    Repeat<br>
+      <span class="math inline"> \( \hspace{1cm} \Delta \leftarrow 0  \) </span> <br>
+      <span class="math inline"> \( \hspace{1cm} \) </span> For each <span class="math inline"> \( s \in \mathcal{S} \) </span> :<br> 
+        <span class="math inline"> \( \hspace{2cm} v \leftarrow V(s) \) </span> <br> 
+        <span class="math inline"> \( \hspace{2cm} V(s) \leftarrow  \sum _{a}  \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} 
+        [\mathcal{R}^{a}_{ss^{'}} + \gamma V_{k}(s^{'})] \) </span> <br>
+        <span class="math inline"> \( \hspace{2cm} \Delta \leftarrow \) </span> max  <span class="math inline"> \( ( \Delta, |v-V(s)|) \) </span><br>
+    Until <span class="math inline"> \( \Delta &lt; \theta \) </span> (a small positive number)<br>
+    Output <span class="math inline"> \( V \approx V^{\pi} \) 
 
-  Input  <span class="math inline"> \(  \pi \) </span>, the policy to be evaluated <br> 
-  Initialize  <span class="math inline"> \(V(s) = 0 \) </span>, for all <span class="math inline"> \( s \in \mathcal{S}^{+} \) </span> <br>
-  Repeat<br>
-    <span class="math inline"> \( \hspace{1cm} \Delta \leftarrow 0  \) </span> <br>
-    <span class="math inline"> \( \hspace{1cm} \) </span> For each <span class="math inline"> \( s \in \mathcal{S} \) </span> :<br> 
-      <span class="math inline"> \( \hspace{2cm} v \leftarrow V(s) \) </span> <br> 
-      <span class="math inline"> \( \hspace{2cm} V(s) \leftarrow  \sum _{a}  \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} 
-      [\mathcal{R}^{a}_{ss^{'}} + \gamma V_{k}(s^{'})] \) </span> <br>
-      <span class="math inline"> \( \hspace{2cm} \Delta \leftarrow \) </span> max  <span class="math inline"> \( ( \Delta, |v-V(s)|) \) </span><br>
-  Until <span class="math inline"> \( \Delta &lt; \theta \) </span> (a small positive number)<br>
-  Output <span class="math inline"> \( V \approx V^{\pi} \) 
-
-</p>
+  </p>
 
 
     
