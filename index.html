@@ -27,7 +27,7 @@
   <h3> Three different facets </h3>
   <dt-byline></dt-byline>
 
-  <p> Dynamic Programming is a versatile method of computation which finds applications in wide ranging fields from aerospace engineering to economics. It was developed by Richard Bellman in the 1950s. It can be used as a method of optimization as well as in computer programming. In this blog, we will consider three different applications of Dynamic Programming namely Reinforcement Learning, Reliability Engineering and Budget Allocation. The first two applications fall broadly under the umbrella of optimization problems, the last one under the domain of computer science. Dynamic Programming problems in Computer Science require two key attributes : optimal substructure and overlapping sub-problems. </p>
+  <p> Enter introductory text here </p>
 
     <h1>Reinforcement Learning<dt-cite key="sutton"></dt-cite></h1>
 
@@ -39,7 +39,7 @@
 	</center>
 
 	<p>
-		Reinforcement Learning is an area of machine learning concerned with developing intelligent agents which take actions in an environment to maximize rewards. For a brief introduction to the concepts of Reinforcement Learning refer to the blog <a href="https://towardsdatascience.com/reinforcement-learning-an-introduction-to-the-concepts-applications-and-code-ced6fbfd882d"> here. </a>
+		Reinforcement Learning is an area of machine learning concerned with developing intelligent agents whio take actions in an environment to maximize rewards. For a brief introduction to the concepts of Reinforcement Learning refer to the blog <a href="https://towardsdatascience.com/reinforcement-learning-an-introduction-to-the-concepts-applications-and-code-ced6fbfd882d"> here. </a>
 	</p>
 
     <p>
@@ -150,10 +150,10 @@
 <p>
 <p>If the stage <span class="math inline">\(i\)</span> contains <span class="math inline">\(m_{i}\)</span> copies of the device <span class="math inline">\(D_{i}\)</span>, then the probability that all <span class="math inline">\(m_{i}\)</span> have a malfunction is <span class="math inline">\(\left ( 1-r_{i} \right )^{m_{i}}\)</span>. Hence the reliability of the stage <span class="math inline">\(i\)</span> becomes <span class="math inline">\(1-\left ( 1-r_{i} \right )^{m_{i}}\)</span>. Thus, if <span class="math inline">\(r_{i}=0.99\)</span> and <span class="math inline">\(m_{i}=2\)</span>, the stage reliability becomes <span class="math inline">\(0.9999\)</span>. In any practical situation, the stage reliability is little less than <span class="math inline">\(1-\left ( 1-r_{i} \right )^{m_{i}}\)</span> because the switching circuits themselves are not fully reliable. Also, failure of copies of the same device may not be fully independent. Let us assume that reliabilty of stage <span class="math inline">\(i\)</span> is given by a function <span class="math inline">\(\Phi _{i} \left ( m_{i} \right ), 1\le n\)</span>. Therefore, the reliability of the system of stages is <span class="math inline">\(\prod_{1 \le i \le n}{\Phi _{i}\left ( m_{i} \right ) }\)</span>. Our problem is to use device duplication to maximize reliability. This maximization of the reliability is carried under the cost constraint. Let <span class="math inline">\(c_{i}\)</span> be the cost of the unit device i and c be the maximum allowable cost of the system being designed. We wish to solve the following maximization problem. The following is the problem statement.</p>
     
-<div class="center">
-<p><strong>maximize</strong> <span class="math inline">\(\Phi _{i} \left ( m_{i} \right ), 1\le n\)</span></p>
-<p><strong>subject to</strong> <span class="math inline">\(\sum _{1 \le i \le n} c_{i}m_{i} \le c\)</span></p>
-<p><span class="math inline">\(m_{i} \ge 1\)</span> and integer, <span class="math inline">\(1 \le  i \le n\)</span>.</p>
+<div class="Objectivefunction">
+	<p><strong>maximize</strong> <span class="math inline">\(\Phi _{i} \left ( m_{i} \right ), 1\le n\)</span></p>
+	<p><strong>subject to</strong> <span class="math inline">\(\sum _{1 \le i \le n} c_{i}m_{i} \le c\)</span></p>
+	<p><span class="math inline">\(m_{i} \ge 1\)</span> and integer, <span class="math inline">\(1 \le  i \le n\)</span>.</p>
 </div>
 <p>since, we can assume each <span class="math inline">\(c_{i} \ge 0\)</span>, each <span class="math inline">\(m_{i}\)</span> must be in the range <span class="math inline">\(1 \le m_{i} \le u_{i}\)</span>, where <span class="math inline">\(u_{i}=\left \lfloor \frac{\left ( c+c_{i}-\sum_{j=1}^{n}{c_{j}} \right )}{c_{i}} \right \rfloor\)</span>. The upper bound <span class="math inline">\(u_{i}\)</span> follow from the observation that <span class="math inline">\(m_{j} \ge 1\)</span>. An optimal solution <span class="math inline">\(m_{1},m_{2},....m_{n}\)</span> is the result of a sequence of decisions, one decision for each <span class="math inline">\(m_{i}\)</span>.</p>
 <p>Let <span class="math inline">\(f_{i}(x)\)</span> represents the maximum value of the <span class="math inline">\(\prod_{1 \le j \le i}{\Phi _{i}\left ( m_{j} \right ) }\)</span> subject to the constraints <span class="math inline">\(\sum _{1 \le j \le i}{c_{j}m_{j}} \le x\)</span> and <span class="math inline">\(1 \le m_{j} \le u_{j}, 1 \le j \le i\)</span>. Then, the value of an optimal solution is <span class="math inline">\(f_{n}(c)\)</span>.</p>
