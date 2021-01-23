@@ -512,7 +512,7 @@
 
 <p>We will try to understand Dynamic Programming with the help of an example.</p> 
 
-<p>Govt. of India has a budget of Rs. <strong>420</strong> Crores. GoI has decided to distribute to this budget to various PSUs based on their demands and expected profit. GoI wants to allocate money in such that it will maximize the expected benefit. Constraint: Either the PSU demand is full filled completely or will not be considered at all.</p>
+<p>Governmentt of India (GoI) has a budget of Rs. <strong>420</strong> Crores. GoI has decided to distribute to this budget to various PSUs based on their demands and expected profit. GoI wants to allocate money in such that it will maximize the expected benefit. Constraint: Either the PSU demand is full filled completely or will not be considered at all.</p>
 
 <div>
 <table align="center" style="width:90%;" border="1" >
@@ -579,7 +579,7 @@
 <!-- <div class="center"> -->
 <p>
 <strong>Maximize</strong> <span class="math inline">\(\sum\limits_{i=1}^{10} b_ix_i \)</span><br>
-s.t. <br><span class="math inline"><br>\(\sum\limits_{i=1}^{10} c_ix_i \le B\)</span><br>
+s.t. <span class="math inline"><br>\(\sum\limits_{i=1}^{10} c_ix_i \le B\)</span><br>
 <span class="math inline">\(x_i \in \{0,1\}\ \forall i \in \{1,2,...,10\}\)</span><br><br>
 where,<br>
 <span class="math inline">\(c_i\)</span> represents the cost required by <span class="math inline">\(i^{th}\)</span> PSU <br>
@@ -625,12 +625,12 @@ for i in range(n + 1):
     else: 
         dp[i][b] = dp[i-1][b] 
 
-print('Profit made by government by optimally distributing funds: Rs.', dp[n][budget], 'Cr')</code>
+print('Profit made by government by optimally distributing funds: Rs.', dp[n][budget], 'Crs')</code>
 </pre>
 </div>
 
 <p>
-	The Profit made by GoI is Rs. 3110 Crs. by optimally allocating 420 Crs. 
+	The Profit made by GoI is Rs. <strong>3110</strong> Crs. by optimally allocating <strong>420</strong> Crs. 
 </p>
 
 <div>
