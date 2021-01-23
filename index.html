@@ -23,13 +23,24 @@
 
 <dt-article>
 
-  <h1> Dynamic Programming </h1>
+  <h1 style="color:Blue"> Dynamic Programming </h1>
   <h3> Three different facets </h3>
   <dt-byline></dt-byline>
 
   <p> Enter introductory text here </p>
 
-    <h2 id="dynamic-programming-in-reinforcement-learning">Dynamic Programming in Reinforcement Learning</h2>
+    <h1>Reinforcement Learning<dt-cite key="sutton"></dt-cite></h1>
+
+    <center>
+    <figure>
+  	<img src="RL.jpg" style="width:50%">
+  	<figcaption>Alpha GO: the first algorithm to beat humans at GO </figcaption>
+	</figure>
+	</center>
+
+	<p>
+		Reinforcement Learning is an area of machine learning concerned with developing intelligent agents whio take actions in an environment to maximize rewards. For a brief introduction to the concepts of Reinforcement Learning refer to the blog <a href="https://towardsdatascience.com/reinforcement-learning-an-introduction-to-the-concepts-applications-and-code-ced6fbfd882d"> here. </a>
+	</p>
 
     <p>
       Classical Dynamic Programming (DP) algorithms require a perfect knowledge of Markov Decision Process (MDP) to be useful in Reinforcement Learning (RL) . Hence, they may not be directly applied to such problems. Generally,they also incur large computational expense. However, they can be adapated to work with RL problems, and that too at a less-than-classical-computational expense. 
@@ -60,7 +71,7 @@
       We will consider the use of DP for <b> Policy Evaluation </b>. Policy evaluation is used to estimate the goodness of a policy. Bellman equation of optimality for state value function 
       \(V^{\pi}_{s} \) 
       (for an arbitrary policy \( \pi \) )
-      and all
+      for all
       \(s \in \mathcal{S} \)
       is given below:. 
       \begin{equation}
@@ -78,38 +89,48 @@
         &=  \sum _{a} \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} [\mathcal{R}^{a}_{ss^{'}} + \gamma V^{\pi}(s^{'})] 
       \end{split}
       \end{equation}
+      where 
+      \(\pi (s,a)\)
+      is the probability of taking action \(a\) in state \(s\) under policy \( \pi\), and the expectations are with respect to \( \pi \). The existence and uniqueness of \(  V^{\pi}_s \) is guaranteed if \( \gamma < 1\) or eventual termination is guranteed from all states under the policy  \( \pi \).
+    </p>
 
+    <p>
+    	If the environment's dynamics are completely known, it boils down to solving \(  |\mathcal{S}| \) simultaneous linear equations in \(  |\mathcal{S}| \) unkowns. However, that is generally not the case. We will consider an iterative solution technique where starting from
+    	\(V_{0}, V_{1}, V_{2}......\) 
+    	(each mapping \( \mathcal{S}^{+}\) to \( \mathcal{R}\)) we want to converge <b> in limit </b> to the policy \(  V^{\pi}_s \). The initial approximation \(  V_{0}\) is chosen arbitrarily and each succesive approximation can be obtained by tweaking the Bellman equation for \(  V^{\pi}_s \) as follows:
+	   
+	   	\begin{equation}
+	   	\begin{split}
+	    	V_{k+1}(s) &= E_{\pi} \{r_{t+1} + \gamma V_{k}(s_{t+1}) \hspace{0.1cm} | \hspace{0.1cm} s_{t} = s \} \\ \\
+	      	&= \sum _{a} \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} [\mathcal{R}^{a}_{ss^{'}} + \gamma V_{k}(s^{'})] 
+	    \end{split}
+	    \end{equation}
+  	</p>
+  	<p>
+    	It can be shown the sequence \( \{ V^{k} \} \) converges to \(  V^{\pi}_s \) as \( s \rightarrow \infty \). This algorithm is called <i> iterative policy evaluation</i> . It also an example of an operation called <i> full backup</i> where each iteration <i>backs up</i> the value of every state to produce the new estimate of the value function \( V_{k+1} \). An algorithm for doing the same is given in the section below.
+ 	</p>
 
-  <p>
-    \begin{equation}
-    \begin{split}
-      V_{k+1}(s) &= E_{\pi} \{r_{t+1} + \gamma V_{k}(s_{t+1}) \hspace{0.1cm} | \hspace{0.1cm} s_{t} = s \} \\
-      &= \sum _{a} \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} [\mathcal{R}^{a}_{ss^{'}} + \gamma V_{k}(s^{'})] 
-      \end{split}
-    \end{equation}
-  </p>
+  	<h2 style="color:DarkCyan";>Algorithm for Policy Evaluation</h2>
 
-  <h2>Algorithm for Policy Evaluation</h3>
+	<!hr style="width:40%;text-align:center;margin-left:150">
+  	<p>
+    	<em>
+		    Input  \(  \pi \) , the policy to be evaluated <br> 
+		    Initialize   \(V(s) = 0 \) , for all  \( s \in \mathcal{S}^{+} \)  <br>
+		    Repeat<br>
+		       \( \hspace{1cm} \Delta \leftarrow 0  \)  <br>
+		       \( \hspace{1cm} \)  For each \( s \in \mathcal{S} \)  :<br> 
+		       \( \hspace{2cm} v \leftarrow V(s) \)  <br> 
+		       \( \hspace{2cm} V(s) \leftarrow  \sum _{a}  \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}}[\mathcal{R}^{a}_{ss^{'}} + \gamma V_{k}(s^{'})] \)<br>
+		       \( \hspace{2cm} \Delta \leftarrow \) max  \( ( \Delta, |v-V(s)|) \) <br>
+		    Until \( \Delta &lt; \theta \) (a small positive number)<br>
+		    Output \( V \approx V^{\pi} \) <br> 
+    	</em>
+  	</p>
+  	<!hr style="width:40%;text-align:center;margin-left:150">
 
-  <p>
-
-    Input  <span class="math inline"> \(  \pi \) </span>, the policy to be evaluated <br> 
-    Initialize  <span class="math inline"> \(V(s) = 0 \) </span>, for all <span class="math inline"> \( s \in \mathcal{S}^{+} \) </span> <br>
-    Repeat<br>
-      <span class="math inline"> \( \hspace{1cm} \Delta \leftarrow 0  \) </span> <br>
-      <span class="math inline"> \( \hspace{1cm} \) </span> For each <span class="math inline"> \( s \in \mathcal{S} \) </span> :<br> 
-        <span class="math inline"> \( \hspace{2cm} v \leftarrow V(s) \) </span> <br> 
-        <span class="math inline"> \( \hspace{2cm} V(s) \leftarrow  \sum _{a}  \pi(s,a) \sum_{s^{'}} \mathcal {P}^{a}_{ss^{'}} 
-        [\mathcal{R}^{a}_{ss^{'}} + \gamma V_{k}(s^{'})] \) </span> <br>
-        <span class="math inline"> \( \hspace{2cm} \Delta \leftarrow \) </span> max  <span class="math inline"> \( ( \Delta, |v-V(s)|) \) </span><br>
-    Until <span class="math inline"> \( \Delta &lt; \theta \) </span> (a small positive number)<br>
-    Output <span class="math inline"> \( V \approx V^{\pi} \) 
-
-  </p>
-
-
-    
- <h1 id="reliability-design">Reliability Design</h1>
+  	
+ 	<h1 id="reliability-design">Reliability Design</h1>
 
     <p>The problem is to design a system that is composed of a several devices connected in the series. Let <span class="math inline">\(r_{i}\)</span> be the reliability of the device <span class="math inline">\(D_{i}\)</span>. Then the Reliability of the entire system is <span class="math inline">\(\prod r_{i}\)</span>. Even if the individual devices are very reliable, the reliability of the system may not be very good.</p>
 <p>For example, if <span class="math inline">\(n=10\)</span> and <span class="math inline">\(r_{i}=0.99\)</span>, <span class="math inline">\(1\leq i\leq 10\)</span>, then <span class="math inline">\(\prod r_{i}=0.904\)</span>. Hence, it is desirable to duplicate the devices. Multiple copies of the same device type are connected in parallel through the use of switching circuits. The switching circuits determine which devices in any given group are functioning properly. They the make use of one such device at each stage. </p>
@@ -642,7 +663,21 @@ for iter, x in enumerate(allocat_org):
 </p>
 
 <p>Dynamic Programming will always provide global solution by doing minimum computations. Hence, here no matter how we solve we will always reach to same solution.</p>
+</p>
 
+</dt-article>
+<dt-appendix>
+</dt-appendix>
+
+<script type="text/bibliography">
+  @article{sutton,
+    title={Reinforcement Learning : An Introduction},
+    author={Richard S. Sutton and Andrew G. Barto},
+    journal={},
+    year={2015},
+    url={https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf}
+  }
+  </script>
   </body>
   </html>
 
